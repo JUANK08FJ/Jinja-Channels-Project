@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}
+CHANNEL CREATION
+{% endblock %}
+
+{% block main %}
+<main class="container center">
+    <h1 class="text-center title my-4">NEW ANIMATED SHOW</h1>
+
+    <div class="container">
+        <form action="{{ url_for('new_animation') }}" method="POST">
+            <div class="form-group mb-3">
+                <label for="animation_title" class="mb-2">Animated show title *</label>
+                <input type="text" class="form-control form-control-lg" name="title" id="animation_title"
+                       placeholder="Regular Show" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="image_url" class="mb-2">Animated show image *</label>
+                <input type="text" class="form-control form-control-lg" name="image_url" id="image_url"
+                       placeholder="https://example.com/image.png" pattern="https?://.*" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="release_date" class="mb-2">Release date of the show *</label>
+                <input type="text" class="form-control form-control-lg" name="release_date" id="release_date"
+                       placeholder="DD-MMM-YYYY" pattern="\d{2}-[A-Za-z]{3}-\d{4}" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="director" class="mb-2">Animated show director</label>
+                <input type="text" class="form-control form-control-lg" name="director" id="director"
+                       placeholder="Chris Savino">
+            </div>
+            <div class="form-group mb-3">
+                <label for="episodes" class="mb-2">Animated show episodes</label>
+                <input type="number" class="form-control form-control-lg" name="episodes" id="episodes" min="1"
+                       max="9999" placeholder="200">
+            </div>
+            <div class="form-group mb-3">
+                <label for="channel_id" class="mb-2">Creator channel</label>
+                <select class="form-control form-control-lg" id="channel_id" name="channel_id">
+                    <option value="0" selected>This animated show don't have any channel</option>
+                    {% for channel in channels %}
+                    <option value="{{ channel.channel_id }}">{{ channel.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="synopsis" class="mb-2">Animated show synopsis</label>
+                <textarea class="form-control" name="synopsis" id="synopsis" rows="2"
+                          placeholder="Leave blank if desired"></textarea>
+            </div>
+            <input type="submit" name="create" value="CREATE" class="btn btn-dark px-5"
+                   onclick="return confirm('Do you really want to create this new row?')">
+        </form>
+    </div>
+</main>
+{% endblock %}

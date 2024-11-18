@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}
+USERS TABLE
+{% endblock %}
+
+{% block datatables %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+<link href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+<script defer src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script defer src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script defer src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+{% endblock %}
+
+{% block main %}
+<main class="container center">
+    {% for message in get_flashed_messages() %}
+    <div class="mt-3 alert message {% if message[0] == 'U' %}alert-success{% else %}alert-danger{% endif %}"
+         role="alert">
+        <div class="d-flex justify-content-between">
+            {{ message }}
+            <button onclick="DeleteMessage()" class="align-self-end btn btn-close"></button>
+        </div>
+    </div>
+    {% endfor %}
+
+    <h1 class="text-center title mt-4">USERS</h1>
+
+    <a href="{{ url_for('new_user') }}" class="btn btn-success rounded-pill px-3 my-2">Add user</a>
+
+    <table id="datatable" class="table table-striped" style="width:100%">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Role</th>
+            <th width="300px">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in all_users %}
+        {% if user.username != "admin" %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{% if user.role == 1 %}Admin{% else %}User{% endif %}</td>
+            <td>
+                <a class="btn btn-primary rounded-pill px-4 mx-3" href="/users_table/{{ user.id }}/delete"
+                   onclick="return confirm('Do you really want to delete {{ user.username }}?')">Remove</a>
+                <a class="btn btn-info rounded-pill px-4" href="/users_table/{{ user.id }}/modify"
+                   onclick="return confirm('Do you really want to modify {{ user.username }}?')">Modify</a>
+            </td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+</main>
+{% endblock %}

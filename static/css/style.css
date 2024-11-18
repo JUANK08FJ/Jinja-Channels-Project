@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Handjet:wght@500&family=Mooli&display=swap');
+
+/*  GENERAL CSS  */
+
+p, a {
+    font-family: 'Mooli', sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Handjet', sans-serif;
+}
+
+body {
+    background-color: #d5ddda;
+}
+
+/*  FOOTER CSS  */
+
+footer {
+    background-color: #191910;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+footer a.col-md-2.d-flex.align-items-center.justify-content-center.link-body-emphasis img {
+    width: 40px;
+}
+
+footer p.col-md-2 img {
+    margin-right: 10px;
+    width: 30px;
+    border-radius: 100%;
+}
+
+footer p, footer li a {
+    color: white !important;
+}
+
+main {
+    margin-bottom: 73px;
+}
+
+main #title {
+    font-size: 60px;
+}
+
+/*  INDEX CSS  */
+
+main.index div.p-5.text-center.bg-body-tertiary.rounded-3 img {
+    width: 200px;
+}
+
+main.index {
+    padding-bottom: 70px;
+}
+
+main.index div.c_index {
+    background-color: #1b1720 !important;
+}
+
+main.index div.c_index * {
+    color: white !important;
+}
+
+main.index div.c_index button:hover{
+    background-color: #49454d;
+}
+
+main.index div.a_index {
+    background-color: #0c1a26 !important;
+}
+
+main.index div.a_index * {
+    color: white !important;
+}
+
+main.index div.a_index button:hover {
+    background-color: #3d4851;
+}
+
+main.index div.u_index {
+    background-color: #0a1a0e !important;
+}
+
+main.index div.u_index * {
+    color: white !important;
+}
+
+main.index div.u_index button:hover {
+    background-color: #3b483e;
+}
+
+/*  CHANNELS  */
+
+h1.title {
+    font-size: 70px;
+}
+
+/*  LOGIN  */
+
+main.login {
+    margin-top: 220px;
+}
+
+/* DATATABLE */
+
+div#datatable_length {
+    margin: 8px auto 16px auto;
+}
+
+div#datatable_filter {
+    margin-top: 8px;
+}
+
+/* ONLY SELECT */
+
+select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/84/84263.png');
+  background-size: 25px;
+  background-repeat: no-repeat;
+  background-position: right center;
+  cursor: pointer;
+}

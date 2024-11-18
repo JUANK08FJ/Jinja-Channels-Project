@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}
+PROFILE
+{% endblock %}
+
+{% block main %}
+<main class="login container center">
+    <div class="container bootstrap snippets bootdey">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-2">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h1 class="panel-title">
+                            <span class="glyphicon glyphicon-th">Profile of ( {{ session.username }} )</span>
+                        </h1>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-5 separator social-login-box"><br>
+                                <img alt="Profile Pic" class="img-thumbnail"
+                                     src="https://i.pinimg.com/474x/51/e9/a5/51e9a52f8a061a560925605c816a41b8.jpg">
+                            </div>
+                            <div class="col-md-7 login-box mt-0">
+                                <form action="/profile/{{ session.id }}" method="POST">
+                                    <div class="form-group">
+                                        <label for="old_password" class="mb-3">Current Password</label>
+                                        <input type="password" class="form-control form-control-lg mb-3"
+                                               name="old_password" id="old_password" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="new_password" class="mb-3">New Password</label>
+                                        <input type="password" class="form-control form-control-lg mb-4"
+                                               id="new_password" name="new_password" required>
+                                    </div>
+                                    <div class="text-center">
+                                        {% for message in get_flashed_messages() %}
+                                        <div class="alert message {% if message[0] == 'Y' %}alert-danger{% else %}alert-success{% endif %}"
+                                             role="alert">
+                                            <div class="d-flex justify-content-between">
+                                                {{ message }}
+                                                <button onclick="DeleteMessage()"
+                                                        class="align-self-end btn btn-close"></button>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        <input type="submit" name="save" value="SAVE" class="btn btn-success mx-2">
+                                        <a class="btn btn-danger px-3"
+                                           href="/profile/{{ session.id }}/delete"
+                                           onclick="return confirm('Do you really want to delete {{ session.username }}?')">REMOVE</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

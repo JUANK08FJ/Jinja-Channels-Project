@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}
+ANIMATED SHOWS
+{% endblock %}
+
+{% block datatables %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+<link href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+<script defer src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script defer src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script defer src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+{% endblock %}
+
+{% block main %}
+<main class="container center">
+    {% for message in get_flashed_messages() %}
+    <div class="mt-4 alert alert-warning message" role="alert">
+        <div class="d-flex justify-content-between">
+            {{ message }}
+            <button onclick="DeleteMessage()" class="align-self-end btn btn-close"></button>
+        </div>
+    </div>
+    {% endfor %}
+
+    <h1 class="text-center title mt-4">ANIMATED SHOWS</h1>
+
+    <a href="{{ url_for('new_animation') }}" class="btn btn-success rounded-pill px-3 my-2">Add animation</a>
+
+    <table id="datatable" class="table table-striped" style="width:100%">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th width="200px">Image</th>
+            <th width="130px">Release Date</th>
+            <th>Director</th>
+            <th>Episodes</th>
+            <th width="135px">Channel Name</th>
+            <th>Synopsis</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for show in shows %}
+        <tr>
+            <td>{{ show.title }}</td>
+            <td><img src="{{ show.image_url }}" alt="Animation Image" width="200px"></td>
+            <td>{{ show.release_date }}</td>
+            <td>{{ show.director }}</td>
+            <td>{{ show.episodes }}</td>
+            {% if show.channel_id != None %}
+            {% for channel in channels %}
+            {% if channel.channel_id == show.channel_id %}
+            <td>{{ channel.name }}</td>
+            {% endif %}
+            {% endfor %}
+            {% else %}
+            <td>None</td>
+            {% endif %}
+            <td>{{ show.synopsis }}</td>
+            <td>
+                <a class="btn btn-primary rounded-pill px-3 my-2" href="/animations/{{ show.animation_id }}/delete"
+                   onclick="return confirm('Do you really want to delete {{ show.title }}?')">Remove</a>
+                <a class="btn btn-info rounded-pill px-3" href="/animations/{{ show.animation_id }}/modify"
+                   onclick="return confirm('Do you really want to modify {{ show.title }}?')">Modify</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</main>
+{% endblock %}

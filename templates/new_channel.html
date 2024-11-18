@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}
+CHANNEL CREATION
+{% endblock %}
+
+{% block main %}
+<main class="container center">
+    <h1 class="text-center title my-4">NEW CHANNEL</h1>
+
+    <div class="container">
+        <form action="{{ url_for('new_channel') }}" method="POST">
+            <div class="form-group mb-3">
+                <label for="name" class="mb-2">Channel name *</label>
+                <input type="text" class="form-control form-control-lg" name="name" id="name"
+                       placeholder="Cartoon Network" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="image_url" class="mb-2">Channel image *</label>
+                <input type="text" class="form-control form-control-lg" name="image_url" id="image_url"
+                       placeholder="https://example.com/image.png" pattern="https?://.*" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="founder" class="mb-2">Channel founder</label>
+                <input type="text" class="form-control form-control-lg" name="founder" id="founder"
+                       placeholder="Bob Pittman">
+            </div>
+            <div class="form-group mb-3">
+                <label for="launch_date" class="mb-2">Launch date of the channel</label>
+                <input type="text" class="form-control form-control-lg" name="launch_date" id="launch_date"
+                       placeholder="DD-MMM-YYYY" pattern="\d{2}-[A-Za-z]{3}-\d{4}">
+            </div>
+            <div class="form-group mb-3">
+                <label for="description" class="mb-2">Channel description</label>
+                <textarea class="form-control" name="description" id="description" rows="3"
+                          placeholder="Leave blank if desired"></textarea>
+            </div>
+            <input type="submit" name="create" value="CREATE" class="btn btn-dark px-5"
+                   onclick="return confirm('Do you really want to create this new row?')">
+        </form>
+    </div>
+</main>
+{% endblock %}

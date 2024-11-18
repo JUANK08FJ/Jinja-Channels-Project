@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}
+CHANNEL MODIFICATION
+{% endblock %}
+
+{% block main %}
+<main class="container center">
+    <h1 class="text-center title my-4">Modify {{ channel.name }} info</h1>
+
+    <div class="container">
+        <form action="/channels/{{ channel.channel_id }}/modify" method="POST">
+            <div class="form-group mb-3">
+                <label for="name" class="mb-2">Channel name *</label>
+                <input type="text" class="form-control form-control-lg" name="name" id="name"
+                       placeholder="Cartoon Network" value="{{ channel.name }}" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="image_url" class="mb-2">Channel image *</label>
+                <input type="text" class="form-control form-control-lg" name="image_url" id="image_url"
+                       placeholder="https://example.com/image.png" value="{{ channel.image_url }}" pattern="https?://.*" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="founder" class="mb-2">Channel founder</label>
+                <input type="text" class="form-control form-control-lg" name="founder" id="founder"
+                       placeholder="Bob Pittman" value="{{ channel.founder }}">
+            </div>
+            <div class="form-group mb-3">
+                <label for="launch_date" class="mb-2">Launch date of the channel</label>
+                <input type="text" class="form-control form-control-lg" name="launch_date" id="launch_date"
+                       placeholder="DD-MMM-YYYY" value="{{ channel.launch_date }}" pattern="\d{2}-[A-Za-z]{3}-\d{4}">
+            </div>
+            <div class="form-group mb-3">
+                <label for="description" class="mb-2">Channel description</label>
+                <textarea class="form-control" name="description" id="description" rows="3"
+                          placeholder="Leave blank if desired">{{ channel.description }}</textarea>
+            </div>
+            <input type="submit" name="modify" value="MODIFY" class="btn btn-secondary px-5"
+                   onclick="return confirm('Do you really want to modify the info of this row?')">
+        </form>
+    </div>
+</main>
+{% endblock %}

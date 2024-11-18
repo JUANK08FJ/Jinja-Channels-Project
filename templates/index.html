@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}
+HOME
+{% endblock %}
+
+{% block main %}
+<main class="container center index">
+    {% for message in get_flashed_messages() %}
+    <div class="mt-4 alert message {% if message[0] == 'Y' %}alert-warning{% else %}alert-primary{% endif %}"
+         role="alert">
+        <div class="d-flex justify-content-between">
+            {{ message }}
+            <button onclick="DeleteMessage()" class="align-self-end btn btn-close"></button>
+        </div>
+    </div>
+    {% endfor %}
+
+    <h1 class="py-5 text-center title mb-4v">TV CHANNELS AND HIS ANIMATED SHOWS</h1>
+
+    <div class="p-5 text-center bg-body-tertiary rounded-3 mb-5 c_index">
+        <img src="https://www.animationxpress.com/wp-content/uploads/2021/01/kids-channels.jpg" alt="SOME CHANNELS">
+        <h1 class="text-body-emphasis mt-3">TV CHANNELS</h1>
+        <p class="col-lg-8 mx-auto fs-5 text-muted">Remember you must be logged to enter this table.</p>
+        <div class="d-inline-flex gap-2 mb-5">
+            <a href="{{ url_for('channels') }}">
+                <button class="btn btn-outline-secondary btn-lg px-4 rounded-pill" type="button">TRY ACCESS</button>
+            </a>
+        </div>
+    </div>
+
+    <div class="p-5 text-center bg-body-tertiary rounded-3 mb-5 a_index">
+        <img src="https://d31xsmoz1lk3y3.cloudfront.net/games/images/map_img_1713479_1581709923.jpg"
+             alt="SOME ANIMATIONS">
+        <h1 class="text-body-emphasis mt-3">ANIMATED SHOWS</h1>
+        <p class="col-lg-8 mx-auto fs-5 text-muted">Remember you must be logged to enter this table.</p>
+        <div class="d-inline-flex gap-2 mb-5">
+            <a href="{{ url_for('animations') }}">
+                <button class="btn btn-outline-secondary btn-lg px-4 rounded-pill" type="button">TRY ACCESS</button>
+            </a>
+        </div>
+    </div>
+
+    <div class="p-5 text-center bg-body-tertiary rounded-3 u_index">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/User_icon-cp.svg/828px-User_icon-cp.svg.png"
+             alt="SOME ANIMATIONS">
+        <h1 class="text-body-emphasis mt-3">USERS</h1>
+        <p class="col-lg-8 mx-auto fs-5 text-muted">Remember must have admin role to enter this table.</p>
+        <div class="d-inline-flex gap-2 mb-5">
+            <a href="{{ url_for('users') }}">
+                <button class="btn btn-outline-secondary btn-lg px-4 rounded-pill" type="button">TRY ACCESS</button>
+            </a>
+        </div>
+    </div>
+</main>
+{% endblock %}
